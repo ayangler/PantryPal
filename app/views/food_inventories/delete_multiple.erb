@@ -1,0 +1,25 @@
+<head>
+  <style type="text/css">
+    .select2-selection.select2-selection--multiple {
+        min-height: 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1><%= @food_inventory.name%></h1>
+  <p class="text-muted">Removing one or more line items.</p>
+  <%= form_for :f, url: destroy_multiple_inventory_line_items_path, method: :delete do |f| %>
+    <%= f.select :ids, options_from_collection_for_select(@food_inventory.inventory_line_items, :id, :name), {:prompt=>true}, {name: "selected[]", multiple:true, id: "multiple-line-items", :include_hidden => false, style:"width:100%" } %>
+    <hr/>
+    <%= f.submit "Save" ,class: "btn btn-success", style:"float:right;" %>
+  <%end%>
+  <script>
+    $(document).ready(function(){
+        $("#multiple-line-items").select2({
+             allowClear: true,
+             theme: "bootstrap"
+         });
+    });
+    // $('select').selectpicker();
+  </script>
+</body>

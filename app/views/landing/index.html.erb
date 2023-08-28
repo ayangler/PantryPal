@@ -1,0 +1,91 @@
+</div>
+<section class="container page-section-top">
+  <div class="row text-center" >
+    <div class="col-md-6">
+      <%= image_tag ("5549.jpg"), style:"width:550px", class: "img-responsive"%>
+      <%# <img class="" src="https://i.imgur.com/XNE5E7I.jpg" width="550px" height="auto"> %>
+    </div>
+    <div class="col-md-6 mt-5 text-left">
+      <div class="mb-5 mb-lg-0">
+        <h1 class="display-4 lh-1 mb-3 ">
+          <p class="greeting">Waste Less.</p>
+          <p class="greeting">Track Smarter.</p>
+        </h1>
+      </div>
+      <p class="lead fw-normal mb-3">Never let food go to waste again! PantryPal organizes your pantry so you are aware of what you have and how much of it. </p>
+      <% if !user_signed_in? %>
+        <p><a class="btn btn-primary" href="<%= new_user_registration_path %>" role="button">Join PantryPal Today!</a></p>
+        <p class="text-muted" > <%= link_to "Already a member?", new_user_session_path %> </p>
+      <%end%>
+    </div>
+  </div>
+</section>
+<section class="page-section" id="services">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="">Check out the features.</h2>
+      <h3 class="section-subheading text-muted">The pal to your pantry!</h3>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <img class="zoom" src="https://cdn-icons-png.flaticon.com/512/135/135620.png" width="100px" height="auto">
+        </span>
+        <h4 class="my-3">Inventory</h4>
+        <p class="text-muted">Easily track your inventory stock and check your foods' expiry dates.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <img class="zoom" src="https://cdn-icons-png.flaticon.com/512/135/135543.png" width="100px" height="auto">
+        </span>
+        <h4 class="my-3">Preparation</h4>
+        <p class="text-muted">See the common preparation methods for different types of foods.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <img class="zoom" src="https://cdn-icons-png.flaticon.com/512/135/135715.png" width="100px" height="auto">
+        </span>
+        <h4 class="my-3">Groceries</h4>
+        <p class="text-muted">Create a grocery list and move items straight into your inventory.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <img class="zoom" src="https://cdn-icons-png.flaticon.com/512/3006/3006112.png" width="100px" height="auto">
+        </span>
+        <h4 class="my-3">Customisable</h4>
+        <p class="text-muted">Customise your ingredients' names and unit of measurements.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <img class="zoom" src="https://cdn-icons-png.flaticon.com/512/3137/3137054.png" width="100px" height="auto">
+        </span>
+        <h4 class="my-3">Reporting</h4>
+        <p class="text-muted">See what proportion of items in your inventory are expired.</p>
+      </div>
+    </div>
+  </section>
+  <footer class="footer py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4">PantryPal 2022</div>
+        <div class="col-lg-4 my-3 my-lg-0">
+          <a class="btn btn-primary mx-2" href="#!" aria-label="Twitter"></a>
+          <a class="btn btn-danger mx-2" href="#!" aria-label="Facebook"></a>
+          <a class="btn btn-success mx-2" href="#!" aria-label="LinkedIn"></a>
+        </div>
+        <div class="col-lg-4 ">
+          <span class="link-dark text-decoration-none me-3">Images and Icons from Freepik, Flaticon and Looka.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <%# <ul class="nav navbar-nav">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">Page 1</a></li>
+  <li><a href="#">Page 2</a></li>
+  <li><a href="#">Page 3</a></li>
+</ul> %>

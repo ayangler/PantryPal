@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  food_inventory: one
+  food: one
+  expiry_date: 2022-05-12 09:56:07
+  quantity: 1
+  unit_of_measurement: MyString
+  string: MyString
+
+two:
+  food_inventory: two
+  food: two
+  expiry_date: 2022-05-12 09:56:07
+  quantity: 1
+  unit_of_measurement: MyString
+  string: MyString

@@ -1,0 +1,61 @@
+<script type="text/javascript" src="/javascripts/lib/cocoon_hide.js"></script>
+<div class="nested-fields inventory-line-item-fields" >
+  <div class="row">
+    <div class="col-md-2 food_from_list">
+      <%= f.label :food_id %>
+      <%= f.select :food_id, options_for_select(Food.all_foods_asc.map{|food| [food.name, food.id]}), {:prompt=>true}, {class: "form-control food-select" } %>
+      <%#<%= f.select :food_id, options_for_select(all_foods_asc.map{|food| [food.name, food.id]}), {:prompt=>true}, {class: "selectpicker form-control", "data-live-search" => "true"   } %>
+      <%#<%= f.collection_select(:food_id, Food.all, :id, :name,  {:prompt=>true}, { class: "dropdown-toggle form-control" })%>
+      <%#<%= food.collection_select(:id, Food.all, food, :name) %>
+    </div>
+    <div class="col-md-2">
+      <%=link_to_add_association 'create new food', f, :food, class: 'add-tag'%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.label :name %>
+      <%= f.select :name, options_for_select(Food.all_foods_asc.map{|food| [food.name, food.name]}), 
+      {:prompt=>true}, {class: "form-control name-tagged" } %>
+      &nbsp;
+    </div>
+    <div class="col-md-2">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, step: '1', min: '1', required: true, :class => 'form-control' %>
+      &nbsp;
+    </div>
+    <div class="col-md-2">
+      <%= f.label :unit_of_measurementm, "Units" %>
+      <%= f.select :unit_of_measurement, options_for_select(InventoryLineItem.unit_of_measurements.map{|k, v| [k.humanize.capitalize, v]}), {:prompt=>true}, class: "form-control" %>
+      &nbsp;
+    </div>
+    <div class="col-md-2">
+      <%= f.label :expiry_date %>
+      <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+        <%= f.text_field :expiry_date, class: 'form-control datepicker' %> &nbsp;
+      </div>
+    </div>
+    <div class="col form-inline">
+      <%= link_to_remove_association "Remove", f, class: 'btn btn-danger' %>
+    </div>
+  </div>
+  <hr/>
+</div>
+<script>
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy'
+    });
+
+    $(".food-select").select2({
+    theme: "bootstrap"
+    });
+    $(".name-tagged").select2({
+      tags: true,
+       theme: "bootstrap"
+    });
+
+
+  });
+  // $('select').selectpicker();
+</script>

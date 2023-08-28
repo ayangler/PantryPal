@@ -1,0 +1,81 @@
+<script type="text/javascript" src="/javascripts/lib/drag_and_drop_display.js"></script>
+<%= form_with(model: inventory_line_item, local: true, html: {novalidate: true, class: 'needs-validation' }) do |f| %>
+  <% if inventory_line_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(inventory_line_item.errors.count, "error") %> prohibited this inventory_line_item from being saved:</h2>
+      <ul>
+        <% inventory_line_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="nested-fields">
+    <div class="row">
+      <div class="col-md-2">
+        <%= f.label :food %>
+        <%= f.select :food_id, options_for_select(Food.all_foods_asc.map{|food| [food.name, food.id]}), 
+      {:prompt=>true}, {class: "form-control food-select" } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <%= f.label :name %>
+        <%# <%= f.text_field :name, required: true, :class => 'form-control' %>
+        <%= f.select :name, options_for_select(Food.all_foods_asc.map{|food| [food.name, food.name]}), {:prompt=>true}, {class: "form-control name-tagged" } %>
+        &nbsp;
+      </div>
+      <div class="col-md-2">
+        <%= f.label :quantity %>
+        <%= f.number_field :quantity, step: '1', min: '1', required: true, :class => 'form-control' %>
+        <div class="invalid-feedback">
+          Please provide a valid quantity.
+        </div>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :unit_of_measurementm, "Units" %>
+        <%= f.select :unit_of_measurement, options_for_select(InventoryLineItem.unit_of_measurements.map{|k, v| [k.humanize.capitalize, v]}), {:prompt=>true}, {class: "form-control", required: true} %>
+        <div class="invalid-feedback">
+          Please provide a valid unit.
+        </div>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :expiry_date %>
+        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+          <%= f.text_field :expiry_date, class: 'form-control datepicker' %> &nbsp;
+        </div>
+      </div>
+    </div>
+    <div class="form-block_container">
+      <div class="form-block_avatar_file">
+        <div class="file_droparea">
+          <p class="file_msg js-set-number">Choose your files or drag them here</p>
+          <%= f.file_field :photos, multiport: false, class: "file_input", type: :file, multiple: true, required: false %>
+        </div>
+      </div>
+    </div>
+    <hr/>
+  </div>
+  <script>
+    $(document).ready(function(){
+      $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy'
+      });
+
+    $(".food-select").select2({
+      theme: "bootstrap"
+    });
+
+
+    $(".name-tagged").select2({
+      tags: true,
+       theme: "bootstrap"
+    });
+
+
+    });
+  </script>
+  <div class="actions">
+    <%= f.submit "Create", :class => 'btn btn-primary ' %>
+  </div>
+<% end %>

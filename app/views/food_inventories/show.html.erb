@@ -1,0 +1,58 @@
+<div class="mb-2">
+  <h1 style="display: inline;">🥦<%= @food_inventory.name %></h1>
+  <%= link_to edit_food_inventory_path(@food_inventory), {remote: true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: ''}  do %>
+    <%=fa_icon "pencil resize-small"%><%end%>
+</div>
+<div id="modal-window" class="modal hide fade" role="dialog" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+<div class="btn-group btn-group-sm icons" style="float:right;">
+  <%=link_to "Add Food", new_inventory_line_item_path, method: :get, class: "btn btn-success"   %>
+  <%=link_to "Delete Multiple", delete_multiple_path(@food_inventory), method: :get, class: "btn btn-danger"   %>
+</div>
+<div class ="form-inline my-2 my-lg-0">
+  <%= form_for @food_inventory, method: :delete do |f| %>
+    <%# <%= f.submit class: "btn btn-sm btn-danger" %>
+    <%= button_tag( :class => "btn btn-sm btn-outline-danger", data: {confirm: "Are you sure?"}) do %>
+      Clear Inventory <%=fa_icon "trash"%></i>
+  <% end %>
+<%end%>
+</div>
+<hr/>
+<table id="inventoryTable" class="table datatable table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Ingredient</th>
+      <th>Quantity</th>
+      <th>Type</th>
+      <%# <th>Units</th> %>
+      <th>Expiry Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @food_inventory.inventory_line_items.each do |item| %>
+      <tr >
+        <td data-link="<%= inventory_line_item_path(item) %>"><%= item.name %> (<%= item.food.name %>)</td>
+        <td data-link="<%= inventory_line_item_path(item) %>"><%=  number_with_delimiter(item.quantity) %> <%=item.unit_of_measurement ? item.unit_of_measurement : ""%></td>
+        <td data-link="<%= inventory_line_item_path(item) %>"><%= item.food.type %></td>
+        <td class=<%= expired(item.expiry_date) ? 'font-italic' : ''%>>
+          <%= date_formatter(item.expiry_date) %></td>
+        <td>
+          <%= link_to inventory_line_item_path(item) do %> <%= fa_icon "search", style: "color:orange" %><%end%>
+          &nbsp;
+          <%= link_to edit_inventory_line_item_path(item) do %> <%= fa_icon "pencil", style: "color:#8DB55F" %><%end%>
+          &nbsp;
+          <%= link_to inventory_line_item_path(item), method: :delete, data: { confirm: 'Are you sure?' }  do %>
+            <%= fa_icon "trash", style: "color:#E76655" %>
+          <%end%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr/>
+<%= render 'chart', food_inventory: @food_inventory %>
+<!--<%= link_to 'Edit', edit_food_inventory_path(@food_inventory) %>  -->

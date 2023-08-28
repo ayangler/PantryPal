@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel">Edit Grocery List Name</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<%= form_with(model: @grocery_list, url: grocery_list_path(@grocery_list), html: { method: :patch, novalidate: true, class: 'needs-validation' }) do |f| %>
+  <div class="modal-body">
+    <% if @grocery_list.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@grocery_list.errors.count, "error") %> prohibited this grocery_list from being saved:</h2>
+        <ul>
+          <% @grocery_list.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="md-5 field ">
+      <%= f.label "Grocery List Name", class: "form-check-label" %><br>
+      <%= f.text_field :name, required: true, class: "form-control " %>
+      <div class="invalid-feedback">
+        Please provide a valid zip.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Update", class: "btn ", formnovalidate:true%>
+    </div>
+  </div>
+<% end %>

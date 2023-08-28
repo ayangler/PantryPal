@@ -1,0 +1,8 @@
+class FoodInventoryMailerPreview < ActionMailer::Preview
+  def new_food_inventory_email
+    # Set up a temporary order for the preview
+    order = FoodInventory.new(name: "Joe")
+
+    FoodInvemtoryMailer.with(food_inventory: order).new_food_inventory_email
+  end
+end

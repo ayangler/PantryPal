@@ -1,0 +1,1 @@
+class InventoryExistsError < StandardError; end

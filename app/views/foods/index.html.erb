@@ -1,0 +1,45 @@
+<head>
+  <title> Foods</title>
+</head>
+<body>
+  <h1>🍎 Foods</h1>
+  <table id="foodTable" class="table datatable table-hover table-striped" cellspacing="0" style="width:100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food.type %></td>
+          <td><%= link_to 'Show', food.becomes(Food) %></td>
+          <!-- <td><%= link_to 'Edit', edit_food_path(food) %></td> -->
+          <!--  <td><%= link_to 'Destroy', food.becomes(Food), method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+<%# <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script> %>
+<script>
+  $(document).ready(function() {
+    $('#foodTable').dataTable( {
+      scrollX: true,
+
+
+      "order": [[ 1, "asc" ]],
+      fixedColumns:   {
+        left: 1
+        }
+
+    } );
+
+
+
+    } );
+</script>

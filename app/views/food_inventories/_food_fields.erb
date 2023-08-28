@@ -1,0 +1,7 @@
+<div class="nested-fields" >
+  <%= f.label :name, "Name of Food"%>
+  <%= f.text_field :name,  class: "form-control" %>
+  <%= f.label :name, "Type of Food"%>
+  <%= f.select :type, options_for_select(Food.all_food_types, :type), {}, class: "form-control" %>
+  <br/>
+</div>

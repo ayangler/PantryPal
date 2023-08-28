@@ -1,0 +1,58 @@
+<div class="row justify-content-center text-center">
+  <div id="main" style="width: 500px;height:500px;"></div>
+</div>
+<script type="text/javascript">
+  // based on prepared DOM, initialize echarts instance
+  var myChart = echarts.init(document.getElementById('main'));
+
+  option = {
+  title: {
+    text: 'Proportion of expired foods in inventory',
+
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  series: [
+    {
+      name: 'Number:',
+      type: 'pie',
+      radius: '50%',
+      data: [
+        { value: '<%=@food_inventory.get_num_of_expired%>', name: 'Expired' },
+        { value: '<%=@food_inventory.get_num_of_non_expired%>', name: 'Non-Expired' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+  };
+
+  // use configuration item and data specified to show chart
+  myChart.setOption(option);
+</script>
+<script>
+  $(document).ready(function() {
+      $('#inventoryTable').dataTable( {
+        "autoWidth": false
+
+  } );
+
+  $("td[data-link]").click(function(e) {
+  window.location = $(this).data("link")
+
+  })
+
+
+
+  } );
+</script>

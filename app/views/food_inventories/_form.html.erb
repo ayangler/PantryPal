@@ -1,0 +1,17 @@
+<%= form_for(@food_inventory) do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="md-5 field">
+    <%= f.label :name, "Inventory Name" %><br>
+    <%= f.text_field :name, required: true, class: "form-control" %>
+  </div>
+  <p class="h3">Inventory Items:</p>
+  <div id="inventoryItems" class="form-group">
+    <%= f.fields_for :inventory_line_items do |inventory_line_item| %>
+      <%= render 'inventory_line_item_fields', f: inventory_line_item %>
+    <% end %>
+    <%= link_to_add_association "+", f, :inventory_line_items, class: "btn btn-success ", style:"float:left" %>
+    <div class="actions">
+      <%= f.submit "Save", :class => 'btn btn-primary', style:"float:right" %>
+    </div>
+  </div>
+<% end %>

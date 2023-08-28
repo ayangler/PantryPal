@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="inventoryModal">Edit Inventory Name</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<%= form_with(model: @food_inventory, url: food_inventory_path(@food_inventory), html: { method: :patch, novalidate: true, class: 'needs-validation' }) do |f| %>
+  <div class="modal-body">
+    <div class="md-5 field ">
+      <%= f.label "Inventory Name", class: "form-check-label" %><br>
+      <%= f.text_field :name, required: true, class: "form-control" %>
+      <div class="invalid-feedback">
+        Please provide a valid name.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Update", class: "btn ", formnovalidate:true%>
+    </div>
+  </div>
+<% end %>

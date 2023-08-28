@@ -1,0 +1,22 @@
+<div class="card" style="width: 18rem;">
+  <img src="https://media0.giphy.com/media/l2JJHEW1lToNnJzxe/giphy.gif?cid=790b7611f35a46313017e00ac7603fdb7f7a39d404f7eed4&rid=giphy.gif&ct=g" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"> Want to incoporate a wider variety of ingredients into your diet? </h5>
+    <p class="card-text">
+      <div class="random-food"></div>
+    </p>
+    <button type="button" class="btn btn-primary random-button"  style="padding: 6px">
+      Get Random Food
+    </button>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $(".random-button").on("click", function() {
+  // do something
+  Rails.ajax({url: '/foods/random',
+  type: 'get'})
+  });
+
+  });
+</script>
